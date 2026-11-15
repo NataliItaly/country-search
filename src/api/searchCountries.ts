@@ -1,5 +1,6 @@
 import type { Country } from '../types/country.js'
 import { HttpError } from '../errors/HttpError.js'
+import mapCountryResponse from '../utils/mapCountryResponse.js'
 
 const API_URL = 'https://countries.dev'
 
@@ -19,5 +20,11 @@ export default async function searchCountries(
     throw new HttpError(response.status)
   }
 
-  return (await response.json()) as Country[]
+  const raw: unknown = await response.json()
+
+  if (!Array.isArray(raw)) {
+    throw new TypeError('Invalid countries response')
+  }
+
+  return raw.map(mapCountryResponse)
 }
