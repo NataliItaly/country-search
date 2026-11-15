@@ -2,5 +2,15 @@ export default function debounce<Args extends unknown[]>(
   fn: (...args: Args) => void,
   delay: number
 ): (...args: Args) => void {
-  throw new Error('Not implemented')
+  let timerId: ReturnType<typeof setTimeout> | undefined
+
+  return (...args: Args): void => {
+    if (timerId !== undefined) {
+      clearTimeout(timerId)
+    }
+
+    timerId = setTimeout(() => {
+      fn(...args)
+    }, delay)
+  }
 }
