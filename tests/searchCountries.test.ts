@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import searchCountries from '../src/api/searchCountries.js'
+import { HttpError } from '../src/errors/HttpError.js'
 
 afterEach(() => {
   vi.unstubAllGlobals()
@@ -135,5 +136,26 @@ describe('searchCountries', () => {
     ).rejects.toMatchObject({
       name: 'AbortError',
     })
+  })
+
+  it('should throw HttpError with the response status', async () => {
+    const mockFetch = vi
+      .fn()
+      .mockResolvedValue(new Response('Internal Server Error', { status: 500 }))
+
+    vi.stubGlobal('fetch', mockFetch)
+
+    const controller = new AbortController()
+
+    try {
+      await searchCountries('Italy', controller.signal)
+      throw new Error('Expected searchCountries to throw')
+    } catch (error) {
+      expect(error).toBeInstanceOf(HttpError)
+
+      if (error instanceof HttpError) {
+        expect(error.status).toBe(500)
+      }
+    }
   })
 })
