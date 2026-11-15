@@ -50,6 +50,23 @@ describe('searchCountries', () => {
     expect(result).toEqual([])
   })
 
+  it('should throw HttpError for 429 status', async () => {
+    const mockFetch = vi
+      .fn()
+      .mockResolvedValue(new Response('Too Many Requests', { status: 429 }))
+
+    vi.stubGlobal('fetch', mockFetch)
+
+    const controller = new AbortController()
+
+    await expect(
+      searchCountries('Italy', controller.signal)
+    ).rejects.toMatchObject({
+      name: 'HttpError',
+      status: 429,
+    })
+  })
+
   it('should throw an error when response is not ok', async () => {
     const mockFetch = vi
       .fn()
@@ -59,9 +76,12 @@ describe('searchCountries', () => {
 
     const controller = new AbortController()
 
-    await expect(searchCountries('Italy', controller.signal)).rejects.toThrow(
-      '500'
-    )
+    await expect(
+      searchCountries('Italy', controller.signal)
+    ).rejects.toMatchObject({
+      name: 'HttpError',
+      status: 500,
+    })
   })
 
   it('should pass the AbortSignal to fetch', async () => {
