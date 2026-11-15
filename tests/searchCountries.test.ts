@@ -8,11 +8,22 @@ afterEach(() => {
 
 describe('searchCountries', () => {
   it('should return an array of countries when response is successful', async () => {
-    const mockCountries = [
+    const apiResponse = [
       {
         name: 'Italy',
-        alpha2Code: 'IT',
-        alpha3Code: 'ITA',
+        population: 60000000,
+        languages: [{ name: 'italian' }],
+        capital: 'Rome',
+        region: 'Europe',
+        flag: '🇮🇹',
+      },
+    ]
+
+    const expectedCountries = [
+      {
+        name: 'Italy',
+        population: 60000000,
+        languages: ['italian'],
         capital: 'Rome',
         region: 'Europe',
         flag: '🇮🇹',
@@ -20,7 +31,7 @@ describe('searchCountries', () => {
     ]
 
     const mockFetch = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify(mockCountries), {
+      new Response(JSON.stringify(apiResponse), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
       })
@@ -32,7 +43,7 @@ describe('searchCountries', () => {
 
     const result = await searchCountries('Italy', controller.signal)
 
-    expect(result).toEqual(mockCountries)
+    expect(result).toEqual(expectedCountries)
     expect(mockFetch).toHaveBeenCalledTimes(1)
   })
 
