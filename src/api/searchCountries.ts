@@ -1,4 +1,5 @@
 import type { Country } from '../types/country.js'
+import { HttpError } from '../errors/HttpError.js'
 
 const API_URL = 'https://countries.dev'
 
@@ -15,7 +16,7 @@ export default async function searchCountries(
   }
 
   if (!response.ok) {
-    throw new Error(`HTTP error: ${response.status}`)
+    throw new HttpError(response.status)
   }
 
   return (await response.json()) as Country[]
