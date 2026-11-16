@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* File structure */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* JavaScript version and modules */
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* Libraries */
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": [],
+
+    /* Type checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* JavaScript output */
+    "sourceMap": true,
+    "noEmitOnError": true,
+
+    /* Other */
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
