@@ -17,6 +17,7 @@ export default function formEl(): HTMLFormElement {
     id: 'search-input',
     name: 'search-input',
     type: 'search',
+    placeholder: 'For example Italy',
   })
 
   form.append(label, input)

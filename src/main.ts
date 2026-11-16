@@ -3,7 +3,7 @@ import debounce from './utils/debounce.js'
 import handleSearch from './handlers/handleSearch.js'
 
 const containerElement = containerEl()
-document.body.append(containerElement)
+document.body.prepend(containerElement)
 
 let activeController: AbortController | null = null
 
