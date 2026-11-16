@@ -1,6 +1,9 @@
 import containerEl from './ui/containerEl.js'
 import debounce from './utils/debounce.js'
 import handleSearch from './handlers/handleSearch.js'
+import getYear from './utils/getYear.js'
+
+getYear()
 
 const containerElement = containerEl()
 document.body.prepend(containerElement)

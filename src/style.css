@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -10,6 +12,10 @@ body {
   background: #f8fafc;
 }
 
+a {
+  color: inherit;
+}
+
 h1 {
   text-align: center;
   color: #1e3a8a;
@@ -17,7 +23,7 @@ h1 {
 
 .container {
   max-width: 1400px;
-  min-height: 100vh;
+  min-height: calc(100vh - 110px);
   margin: 0 auto;
   padding: 20px;
 }
@@ -44,4 +50,31 @@ h1 {
 
 .form__input::placeholder {
   color: rgba(30, 59, 138, 0.7);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+  gap: 10px;
+  background: #1e3a8a;
+  color: #fff;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.copyright {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.footer__github {
+  justify-self: end;
+  font-size: 12px;
+}
+
+.footer__logo {
+  width: 40px;
+  height: 40px;
+  align-self: center;
 }
