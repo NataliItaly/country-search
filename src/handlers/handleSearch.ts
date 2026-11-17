@@ -16,6 +16,7 @@ export default async function handleSearch(
     const cards = cardListEl(countries)
     const result = document.querySelector('.result')
     if (result) {
+      result.innerHTML = ''
       result.append(cards)
     }
   } catch (error) {
