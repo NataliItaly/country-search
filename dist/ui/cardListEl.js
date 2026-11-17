@@ -4,7 +4,6 @@ export default function cardListEl(data) {
     data.forEach((item) => {
         const listItem = createElement('li', { class: 'list__item', id: item.id });
         const countryFields = [
-            'id',
             'name',
             'population',
             'flag',
