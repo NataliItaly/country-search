@@ -14,7 +14,6 @@ export default async function handleSearch(query, signal) {
         const countries = await searchCountries(query, signal);
         if (signal.aborted)
             return;
-        console.log(countries);
         const cards = cardListEl(countries);
         if (result) {
             result.replaceChildren();
