@@ -10,7 +10,8 @@ export default function mapCountryResponse(raw) {
             .filter((language) => isRecord(language) && typeof language.name === 'string')
             .map((language) => language.name)
         : [];
-    return {
+    const result = {
+        id: '',
         name: typeof raw.name === 'string' ? raw.name : '',
         flag: typeof raw.flag === 'string' ? raw.flag : '',
         capital: typeof raw.capital === 'string' ? raw.capital : '',
@@ -18,5 +19,6 @@ export default function mapCountryResponse(raw) {
         population: typeof raw.population === 'number' ? raw.population : 0,
         languages,
     };
+    return result;
 }
 //# sourceMappingURL=mapCountryResponse.js.map

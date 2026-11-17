@@ -25,6 +25,6 @@ export default async function searchCountries(
   if (!Array.isArray(raw)) {
     throw new TypeError('Invalid countries response')
   }
-  console.log('raw', raw.map(mapCountryResponse))
+
   return raw.map(mapCountryResponse)
 }

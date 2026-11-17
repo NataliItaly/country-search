@@ -3,6 +3,7 @@ import cardListEl from '../ui/cardListEl.js'
 import noResultEl from '../ui/noResultEl.js'
 import errorEl from '../ui/errorEl.js'
 import loaderEl from '../ui/loader.js'
+import { setCountryState } from '../state/state.js'
 
 const MIN_LOADING_TIME = 700
 
@@ -24,6 +25,9 @@ export default async function handleSearch(
 
   try {
     const countries = await searchCountries(query, signal)
+    countries.forEach((country) => (country.id = crypto.randomUUID()))
+
+    setCountryState(countries)
 
     const elapsed = Date.now() - startedAt
     const remaining = Math.max(0, MIN_LOADING_TIME - elapsed)

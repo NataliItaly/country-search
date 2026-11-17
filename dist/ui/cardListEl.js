@@ -2,7 +2,7 @@ import createElement from '../utils/createElement.js';
 export default function cardListEl(data) {
     const list = createElement('ul', { class: 'list' });
     data.forEach((item) => {
-        const listItem = createElement('li', { class: 'list__item' });
+        const listItem = createElement('li', { class: 'list__item', id: item.id });
         const countryFields = [
             'name',
             'population',
@@ -31,28 +31,4 @@ export default function cardListEl(data) {
     });
     return list;
 }
-/* const name = item.name ? item.name : ''
-    const population = item.population ? String(item.population) : ''
-    const flag = item.flag ? item.flag : ''
-    const capital = item.capital ? item.capital : ''
-    const region = item.region ? item.region : ''
-    const languages = item.languages ? item.languages : [] */
-/* const title = createElement('h3', { class: 'list__title' }, name)
-    const capitalInfo = createElement(
-      'p',
-      { class: 'list__item-capital' },
-      capital
-    )
-    const populationInfo = createElement(
-      'p',
-      { class: 'list__population-info' },
-      population
-    )
-    const regionInfo = createElement(
-      'p',
-      { class: 'list__item-region' },
-      region
-    )
-    const flagInfo = createElement('p', { class: 'list__item-flag' }, flag) */
-//listItem.append(title, flagInfo, capitalInfo, populationInfo, regionInfo)
 //# sourceMappingURL=cardListEl.js.map

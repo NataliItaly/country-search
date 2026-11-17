@@ -2,6 +2,8 @@ import containerEl from './ui/containerEl.js'
 import debounce from './utils/debounce.js'
 import handleSearch from './handlers/handleSearch.js'
 import getYear from './utils/getYear.js'
+import countryPopup from './ui/countryPopup.js'
+import { getCountryState } from './state/state.js'
 
 getYear()
 
@@ -17,6 +19,39 @@ const debouncedSearch = debounce((query: string, signal: AbortSignal): void => {
 
   void handleSearch(query, signal)
 }, 300)
+
+containerElement.addEventListener('click', (e: Event) => {
+  console.log(e.target)
+  if (e.target instanceof HTMLElement && e.target.closest('.list__item')) {
+    const element = e.target.closest('.list__item') as HTMLElement
+    const currentCountries = getCountryState()
+
+    const currentData = currentCountries.find((item) => element.id === item.id)
+
+    if (currentData) {
+      const popupEl = countryPopup(currentData)
+      document.body.append(popupEl)
+    }
+  }
+})
+
+window.addEventListener('click', function (e: Event) {
+  if (e.target instanceof HTMLElement && e.target.closest('.popup__btn')) {
+    console.log('popup close')
+    const popup = e.target.closest('.popup')
+    console.log(popup)
+    if (popup) popup.remove()
+  }
+
+  if (
+    e.target instanceof HTMLElement &&
+    e.target.classList.contains('popup') &&
+    !e.target.closest('.popup__window')
+  ) {
+    const popup = e.target.closest('.popup')
+    if (popup) popup.remove()
+  }
+})
 
 containerElement.addEventListener('input', (e: Event) => {
   if (

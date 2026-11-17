@@ -68,6 +68,13 @@ h1 {
   border-radius: 10px;
   background: #ececf6;
   box-shadow: 1px 1px 10px rgba(30, 59, 138, 0.4);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.list__item:hover {
+  background: #fbfbff;
+  box-shadow: 2px 2px 20px rgba(0, 0, 10, 0.6);
 }
 
 .list__item-row {
@@ -78,15 +85,25 @@ h1 {
   column-gap: 10px;
   row-gap: 3px;
   padding: 3px 20px;
+  transition: 0.6s;
 }
 
 .list__item-row:nth-of-type(2n + 1) {
   background: #fbfbff;
 }
 
+.list__item:hover .list__item-row:nth-of-type(2n + 1) {
+  background: #ececf6;
+}
+
+.list__item:hover .list__item-name {
+  color: #f93416;
+}
+
 .list__row-name {
   font-size: 11px;
   text-transform: uppercase;
+  transition: 0.4s;
 }
 
 .list__row-title {
@@ -160,6 +177,49 @@ h1 {
   width: 40px;
   height: 40px;
   align-self: center;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup__window {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: #ececf6;
+  border-radius: 10px;
+  position: relative;
+}
+
+.popup__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-family: monospace;
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.popup__btn:hover {
+  color: #1e3a8a;
 }
 
 .loader {

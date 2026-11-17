@@ -22,7 +22,8 @@ export default function mapCountryResponse(raw: unknown): Country {
         .map((language) => language.name as string)
     : []
 
-  return {
+  const result = {
+    id: '',
     name: typeof raw.name === 'string' ? raw.name : '',
     flag: typeof raw.flag === 'string' ? raw.flag : '',
     capital: typeof raw.capital === 'string' ? raw.capital : '',
@@ -30,4 +31,6 @@ export default function mapCountryResponse(raw: unknown): Country {
     population: typeof raw.population === 'number' ? raw.population : 0,
     languages,
   }
+
+  return result
 }
