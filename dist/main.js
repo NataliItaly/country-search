@@ -19,15 +19,16 @@ containerElement.addEventListener('input', (e) => {
     }
     // cancel the previous request
     activeController?.abort();
+    activeController = null;
     // get new value
     const query = e.target.value.trim().toLowerCase();
     // clean previous result
-    const resultEl = document.querySelector('result');
+    const resultEl = document.querySelector('.result');
     if (resultEl)
         resultEl.replaceChildren();
     // check for empty input
     if (!query) {
-        activeController = null;
+        //activeController = null
         return;
     }
     // create new AbortController

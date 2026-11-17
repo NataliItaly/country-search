@@ -12,15 +12,12 @@ export default async function handleSearch(query, signal) {
     }
     try {
         const countries = await searchCountries(query, signal);
-        /*  if (signal.aborted) {
-          if (result) result.replaceChildren()
-          return
-        } */
+        if (signal.aborted)
+            return;
         console.log(countries);
         const cards = cardListEl(countries);
-        console.log(cards.children.length);
         if (result) {
-            result.innerHTML = '';
+            result.replaceChildren();
             if (cards.children.length > 0) {
                 result.append(cards);
             }
