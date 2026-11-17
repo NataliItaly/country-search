@@ -20,7 +20,7 @@ export default async function handleSearch(
     const countries = await searchCountries(query, signal)
 
     if (signal.aborted) return
-    console.log(countries)
+
     const cards = cardListEl(countries)
 
     if (result) {
