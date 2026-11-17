@@ -16,6 +16,8 @@ export default async function handleSearch(query, signal) {
     result?.replaceChildren(loaderEl());
     try {
         const countries = await searchCountries(query, signal);
+        countries.forEach((country) => (country.id = crypto.randomUUID()));
+        console.log('countries', countries);
         const elapsed = Date.now() - startedAt;
         const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
         if (remaining > 0) {

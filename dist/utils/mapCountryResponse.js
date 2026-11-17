@@ -11,6 +11,7 @@ export default function mapCountryResponse(raw) {
             .map((language) => language.name)
         : [];
     return {
+        id: '',
         name: typeof raw.name === 'string' ? raw.name : '',
         flag: typeof raw.flag === 'string' ? raw.flag : '',
         capital: typeof raw.capital === 'string' ? raw.capital : '',
