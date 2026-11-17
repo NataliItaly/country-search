@@ -15,6 +15,7 @@ const debouncedSearch = debounce((query, signal) => {
     void handleSearch(query, signal);
 }, 300);
 containerElement.addEventListener('click', (e) => {
+    console.log(e.target);
     if (e.target instanceof HTMLElement &&
         e.target.classList.contains('list__item')) {
         const element = e.target;
