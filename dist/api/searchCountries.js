@@ -14,7 +14,6 @@ export default async function searchCountries(query, signal) {
     if (!Array.isArray(raw)) {
         throw new TypeError('Invalid countries response');
     }
-    console.log('raw', raw.map(mapCountryResponse));
     return raw.map(mapCountryResponse);
 }
 //# sourceMappingURL=searchCountries.js.map

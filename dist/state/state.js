@@ -1,17 +1,18 @@
 let countryState;
 const savedCountryState = localStorage.getItem('countryState');
 if (savedCountryState) {
-    countryState = JSON.parse(savedCountryState);
-}
-else {
-    countryState = [];
-    localStorage.setItem('countryState', JSON.stringify(countryState));
+    try {
+        countryState = JSON.parse(savedCountryState);
+    }
+    catch {
+        countryState = [];
+    }
 }
 export function getCountryState() {
     return countryState;
 }
-export function setCountryState(obj) {
-    Object.assign(countryState, obj);
+export function setCountryState(countries) {
+    countryState = countries;
     localStorage.setItem('countryState', JSON.stringify(countryState));
 }
 //# sourceMappingURL=state.js.map

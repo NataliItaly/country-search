@@ -202,8 +202,24 @@ h1 {
 
 .popup__btn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-family: monospace;
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.popup__btn:hover {
+  color: #1e3a8a;
 }
 
 .loader {

@@ -2,7 +2,7 @@ import createElement from '../utils/createElement.js';
 export default function countryPopup(data) {
     const popup = createElement('div', { class: 'popup' });
     const popupWindow = createElement('div', { class: 'popup__window' });
-    const popupBtn = createElement('button', { class: 'popup__btn' });
+    const popupBtn = createElement('button', { class: 'popup__btn' }, 'x');
     const countryFields = [
         'name',
         'population',
