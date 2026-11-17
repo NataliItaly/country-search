@@ -9,6 +9,10 @@ ghpages.publish(
 
     add: true,
     nojekyll: true,
+
+    beforeAdd(git) {
+      return git.rm('.gitignore')
+    },
   },
   (error) => {
     if (error) {
