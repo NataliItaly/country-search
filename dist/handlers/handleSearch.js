@@ -10,6 +10,7 @@ export default async function handleSearch(query, signal) {
         const cards = cardListEl(countries);
         const result = document.querySelector('.result');
         if (result) {
+            result.innerHTML = '';
             result.append(cards);
         }
     }
