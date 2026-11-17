@@ -1,6 +1,7 @@
 import searchCountries from '../api/searchCountries.js'
 import cardListEl from '../ui/cardListEl.js'
 import noResultEl from '../ui/noResultEl.js'
+import errorEl from '../ui/errorEl.js'
 
 export default async function handleSearch(
   query: string,
@@ -8,20 +9,22 @@ export default async function handleSearch(
 ): Promise<void> {
   const result = document.querySelector('.result')
 
+  if (signal.aborted) return
+
+  if (!query.trim()) {
+    result?.replaceChildren()
+    return
+  }
+
   try {
     const countries = await searchCountries(query, signal)
 
-    if (signal.aborted) {
-      if (result) result.innerHTML = '' // ?
-      return
-    }
-
+    if (signal.aborted) return
     console.log(countries)
     const cards = cardListEl(countries)
 
-    console.log(cards.children.length)
     if (result) {
-      result.innerHTML = ''
+      result.replaceChildren()
       if (cards.children.length > 0) {
         result.append(cards)
       } else {
@@ -30,20 +33,14 @@ export default async function handleSearch(
       }
     }
   } catch (error) {
-    if (signal.aborted) {
-      if (result) {
-        result.innerHTML = ''
-      }
-      return
-    }
-
     if (error instanceof DOMException && error.name === 'AbortError') {
-      if (result) {
-        result.innerHTML = ''
-      }
       return
     }
 
     console.error('Search failed:', error)
+
+    if (result) {
+      result.replaceChildren(errorEl())
+    }
   }
 }
