@@ -5,10 +5,9 @@ ghpages.publish(
   {
     branch: 'gh-pages',
 
-    src: ['index.html', 'dist/**', 'src/style.css', 'assets/**'],
+    src: ['index.html', 'dist/**', 'src/style.css', 'assets/**', 'favicon.png'],
 
-    remove: ['index.html', 'dist/**', 'src/style.css', 'assets/**'],
-
+    add: true,
     nojekyll: true,
   },
   (error) => {
