@@ -40,6 +40,7 @@ h1 {
 
 .form__label {
   color: #1e3a8a;
+  font-size: 16px;
 }
 
 .form__input {
@@ -159,4 +160,26 @@ h1 {
   width: 40px;
   height: 40px;
   align-self: center;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff url(../assets/earth.webp) center / 230px;
+  margin: 20px auto;
+  position: relative;
+  box-shadow: inset 5px 0 20px 6px #1e3a8a;
+  transition: transform 200ms linear;
+  transform-style: preserve-3d;
+  animation: rotate 6s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 630px 0;
+  }
 }
