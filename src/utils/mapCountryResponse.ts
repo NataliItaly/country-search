@@ -22,10 +22,16 @@ export default function mapCountryResponse(raw: unknown): Country {
         .map((language) => language.name as string)
     : []
 
+  const flags = isRecord(raw.flags) ? raw.flags : undefined
   const result = {
     id: '',
     name: typeof raw.name === 'string' ? raw.name : '',
-    flag: typeof raw.flag === 'string' ? raw.flag : '',
+    flag:
+      typeof flags?.svg === 'string' && flags.svg
+        ? flags.svg
+        : typeof flags?.png === 'string' && flags.png
+          ? flags.png
+          : '',
     capital: typeof raw.capital === 'string' ? raw.capital : '',
     region: typeof raw.region === 'string' ? raw.region : '',
     population: typeof raw.population === 'number' ? raw.population : 0,

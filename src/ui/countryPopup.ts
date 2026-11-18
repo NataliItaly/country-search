@@ -7,26 +7,36 @@ export default function countryPopup(data: Country): HTMLElement {
   const popupBtn = createElement('button', { class: 'popup__btn' }, 'x')
 
   const countryFields: (keyof Country)[] = [
+    'flag',
     'name',
     'population',
-    'flag',
     'capital',
     'region',
   ]
   countryFields.forEach((field) => {
     const row = createElement('p', { class: 'list__item-row' })
-    const rowName = createElement(
-      'span',
-      { class: `list__row-name` },
-      `${field}:`
-    )
-    const rowTitle = createElement(
-      'span',
-      { class: `list__row-title list__item-${field}` },
-      String(data[field])
-    )
+    let rowTitle: HTMLElement
+    if (field === 'flag') {
+      rowTitle = createElement('img', {
+        class: 'popup__flag',
+        src: data.flag,
+        alt: `${data.name} flag`,
+      })
+      row.append(rowTitle)
+    } else {
+      const rowName = createElement(
+        'span',
+        { class: `list__row-name` },
+        `${field}:`
+      )
+      rowTitle = createElement(
+        'span',
+        { class: `list__row-title list__item-${field}` },
+        String(data[field])
+      )
+      row.append(rowName, rowTitle)
+    }
 
-    row.append(rowName, rowTitle)
     popupWindow.append(row)
   })
 

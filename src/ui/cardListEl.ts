@@ -21,11 +21,21 @@ export default function cardListEl(data: Country[]): HTMLElement {
         { class: `list__row-name` },
         `${field}:`
       )
-      const rowTitle = createElement(
-        'span',
-        { class: `list__row-title list__item-${field}` },
-        String(item[field])
-      )
+
+      let rowTitle: HTMLElement
+      if (field === 'flag') {
+        rowTitle = createElement('img', {
+          class: 'list__item-flag',
+          src: item.flag,
+          alt: `${item.name} flag`,
+        })
+      } else {
+        rowTitle = createElement(
+          'span',
+          { class: `list__row-title list__item-${field}` },
+          String(item[field])
+        )
+      }
 
       row.append(rowName, rowTitle)
       listItem.append(row)

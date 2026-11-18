@@ -13,7 +13,17 @@ export default function cardListEl(data) {
         countryFields.forEach((field) => {
             const row = createElement('p', { class: 'list__item-row' });
             const rowName = createElement('span', { class: `list__row-name` }, `${field}:`);
-            const rowTitle = createElement('span', { class: `list__row-title list__item-${field}` }, String(item[field]));
+            let rowTitle;
+            if (field === 'flag') {
+                rowTitle = createElement('img', {
+                    class: 'list__item-flag',
+                    src: item.flag,
+                    alt: `${item.name} flag`,
+                });
+            }
+            else {
+                rowTitle = createElement('span', { class: `list__row-title list__item-${field}` }, String(item[field]));
+            }
             row.append(rowName, rowTitle);
             listItem.append(row);
         });

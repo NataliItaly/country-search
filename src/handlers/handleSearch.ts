@@ -26,7 +26,7 @@ export default async function handleSearch(
   try {
     const countries = await searchCountries(query, signal)
     countries.forEach((country) => (country.id = crypto.randomUUID()))
-
+    console.log(countries.map((el) => el.flag.toLowerCase()))
     setCountryState(countries)
 
     const elapsed = Date.now() - startedAt

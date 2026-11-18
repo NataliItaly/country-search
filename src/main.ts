@@ -21,7 +21,6 @@ const debouncedSearch = debounce((query: string, signal: AbortSignal): void => {
 }, 300)
 
 containerElement.addEventListener('click', (e: Event) => {
-  console.log(e.target)
   if (e.target instanceof HTMLElement && e.target.closest('.list__item')) {
     const element = e.target.closest('.list__item') as HTMLElement
     const currentCountries = getCountryState()
@@ -37,9 +36,7 @@ containerElement.addEventListener('click', (e: Event) => {
 
 window.addEventListener('click', function (e: Event) {
   if (e.target instanceof HTMLElement && e.target.closest('.popup__btn')) {
-    console.log('popup close')
     const popup = e.target.closest('.popup')
-    console.log(popup)
     if (popup) popup.remove()
   }
 
