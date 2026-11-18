@@ -15,7 +15,6 @@ const debouncedSearch = debounce((query, signal) => {
     void handleSearch(query, signal);
 }, 300);
 containerElement.addEventListener('click', (e) => {
-    console.log(e.target);
     if (e.target instanceof HTMLElement && e.target.closest('.list__item')) {
         const element = e.target.closest('.list__item');
         const currentCountries = getCountryState();
@@ -28,9 +27,7 @@ containerElement.addEventListener('click', (e) => {
 });
 window.addEventListener('click', function (e) {
     if (e.target instanceof HTMLElement && e.target.closest('.popup__btn')) {
-        console.log('popup close');
         const popup = e.target.closest('.popup');
-        console.log(popup);
         if (popup)
             popup.remove();
     }
